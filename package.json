@@ -11,5 +11,22 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chigozieorunta/woo-pending-order-bot.git"
+  },
+  "scripts": {
+    "postinstall": "composer install",
+    "dev": "wp-scripts start",
+    "build": "wp-scripts build",
+    "lint": "npm-run-all --parallel lint:*",
+    "lint:js": "wp-scripts lint-js js/src",
+    "lint:php": "composer lint",
+    "test": "npm-run-all --parallel test:js test:php",
+    "test-with-coverage": "npm-run-all --parallel test:js:coverage test:php:coverage",
+    "test:js": "wp-scripts test-unit-js",
+    "test:js:coverage": "wp-scripts test-unit-js --coverage --coverageDirectory=tests/coverage/js",
+    "test:php": "composer test -- --no-coverage",
+    "test:php:coverage": "composer test",
+    "report-coverage": "composer coverage",
+    "docker": "docker-compose run --workdir=/var/www/html/wp-content/plugins/woo-pending-order-bot wordpress",
+    "vagrant": "vagrant ssh -- COMPOSE_FILE=/vagrant/docker-compose.yml docker-compose run --workdir=/var/www/html/wp-content/plugins/woo-pending-order-bot wordpress"
   }
 }
