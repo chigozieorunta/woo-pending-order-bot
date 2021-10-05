@@ -1,0 +1,9 @@
+.DS_Store
+.phpunit.result.cache
+console.log
+phpcs.xml
+phpunit.xml
+.idea/
+.vagrant/
+node_modules/
+vendor/
