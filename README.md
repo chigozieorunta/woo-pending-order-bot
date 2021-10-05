@@ -44,7 +44,7 @@ Note that both Node.js and PHP 7.2 or later are required on your computer for ru
 vagrant up
 ```
 
-which will make it available at [slack-bot.local](http://wporb.local).
+which will make it available at [wporb.local](http://wporb.local).
 
 Use the included wrapper command for running scripts inside the Docker container running inside Vagrant:
 
