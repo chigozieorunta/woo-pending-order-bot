@@ -55,3 +55,17 @@ npm run vagrant -- npm run test:php
 where `npm run test:php` is any of the scripts you would like to run.
 
 Visit [wporb.local:8025](http://wporb.local:8025) to check all emails sent by WordPress.
+
+### Scripts
+
+I use `npm` as the canonical task runner for the project. Some of the PHP related scripts are defined in `composer.json`.
+
+All of these commands can be run inside the Docker or Vagrant environments by prefixing the scripts with `npm run docker --` for Docker or with `npm run vagrant --` for Vagrant.
+
+- `npm run build` to build the plugin JS and CSS assets. Use `npm run dev` to watch and re-build as you work.
+
+- `npm run lint` to lint both PHP and JS files. Use `npm run lint:js` and `npm run lint:php` to lint JS and PHP seperately.
+
+- `npm run test` to run both PHP and JS tests without coverage reporting. Use `npm run test:js` and `npm run test:php` to run tests for JS and PHP seperately.
+
+- `npm run test-with-coverage` to run both PHP and JS tests with coverage reporting.
