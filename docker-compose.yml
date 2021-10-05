@@ -12,3 +12,19 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
+
+  wordpress:
+    build: ./scripts/docker/wordpress
+    depends_on:
+      - mysql
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - wp_data:/var/www/html/wp-content
+      - .:/var/www/html/wp-content/plugins/woo-pending-order-bot
+    restart: always
+    environment:
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: password
