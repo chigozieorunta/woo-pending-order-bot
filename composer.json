@@ -29,5 +29,23 @@
     "phpcompatibility/phpcompatibility-wp": "2.1.0",
     "dealerdirect/phpcodesniffer-composer-installer": "0.7.1",
     "php-coveralls/php-coveralls": "2.2.0"
+  },
+  "scripts": {
+    "lint": [
+      "@composer validate --strict",
+      "phpcs ."
+    ],
+    "test": [
+      "phpunit"
+    ],
+    "coverage": [
+      "php-coveralls --verbose"
+    ],
+    "build": [
+      "composer install --no-dev --prefer-dist --optimize-autoloader --no-scripts"
+    ]
+  },
+  "config": {
+    "sort-packages": true
   }
 }
