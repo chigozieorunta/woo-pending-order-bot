@@ -69,3 +69,10 @@ All of these commands can be run inside the Docker or Vagrant environments by pr
 - `npm run test` to run both PHP and JS tests without coverage reporting. Use `npm run test:js` and `npm run test:php` to run tests for JS and PHP seperately.
 
 - `npm run test-with-coverage` to run both PHP and JS tests with coverage reporting.
+
+## Continuous Integration
+
+I use [Travis CI](https://travis-ci.com) to lint all code, run tests and report test coverage to [Coveralls](https://coveralls.io) as defined in [`.travis.yml`](.travis.yml).
+
+[![Build Status](https://travis-ci.com/chigozieorunta/woo-pending-order-bot.svg?branch=master)](https://travis-ci.com/chigozieorunta/woo-pending-order-bot)
+[![Coverage Status](https://coveralls.io/repos/github/chigozieorunta/woo-pending-order-bot/badge.svg?branch=master)](https://coveralls.io/github/chigozieorunta/woo-pending-order-bot?branch=master)
