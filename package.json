@@ -28,5 +28,12 @@
     "report-coverage": "composer coverage",
     "docker": "docker-compose run --workdir=/var/www/html/wp-content/plugins/woo-pending-order-bot wordpress",
     "vagrant": "vagrant ssh -- COMPOSE_FILE=/vagrant/docker-compose.yml docker-compose run --workdir=/var/www/html/wp-content/plugins/woo-pending-order-bot wordpress"
-  }
+  },
+  "devDependencies": {
+    "@wordpress/block-editor": "3.6.0",
+    "@wordpress/eslint-plugin": "3.4.1",
+    "@wordpress/scripts": "7.0.1",
+    "npm-run-all": "4.1.5"
+  },
+  "dependencies": {}
 }
