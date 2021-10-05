@@ -1,0 +1,13 @@
+{
+  "name": "chigozieorunta/woo-pending-order-bot",
+  "description": "WooCommerce Pending Order Reminder Bot for WordPress.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=7.2",
+    "composer/installers": "^1.7",
+    "htmlburger/carbon-fields": "^3.3"
+  }
+}
