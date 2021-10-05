@@ -1,0 +1,15 @@
+{
+  "name": "woo-pending-order-bot",
+  "version": "1.0.0",
+  "description": "WooCommerce Pending Order Reminder Bot Plugin for WordPress",
+  "author": "Chigozie Orunta",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/chigozieorunta/woo-pending-order-bot/issues"
+  },
+  "homepage": "https://github.com/chigozieorunta/woo-pending-order-bot#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chigozieorunta/woo-pending-order-bot.git"
+  }
+}
