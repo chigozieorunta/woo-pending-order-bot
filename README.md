@@ -54,4 +54,4 @@ npm run vagrant -- npm run test:php
 
 where `npm run test:php` is any of the scripts you would like to run.
 
-Visit [slack-bot.local:8025](http://wporb.local:8025) to check all emails sent by WordPress.
+Visit [wporb.local:8025](http://wporb.local:8025) to check all emails sent by WordPress.
