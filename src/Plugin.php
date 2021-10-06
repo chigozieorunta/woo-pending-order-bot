@@ -7,8 +7,6 @@
 
 namespace WooPendingOrderBot;
 
-use Twilio\Rest\Client;
-
 /**
  * WordPress plugin interface.
  */
@@ -47,15 +45,12 @@ class Plugin {
 	 * @return void
 	 */
 	public function send_reminders( $post_id, $post ) {
-		$client = new Client( $this->options->get_sid(), $this->options->get_token() );
+		$client  = new Twilio( $this->options->get_sid(), $this->options->get_token() );
+		$from    = $this->options->get_phone();
+		$to      = '+2348035454516';
+		$message = $this->options->get_message() . ' - ' . $this->options->get_sender();
 
-		$message = $client->messages->create(
-			'+2348035454516',
-			[
-				'from' => $this->options->get_phone(),
-				'body' => $this->options->get_message() . ' - ' . $this->options->get_sender(),
-			]
-		);
+		$client->send( $from, $to, $message );
 	}
 
 	/**
