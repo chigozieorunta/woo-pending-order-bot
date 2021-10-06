@@ -103,6 +103,14 @@ class Options {
 
 				Field::make( 'textarea', 'crb_message', 'SMS Message (Reminder)' ),
 
+				Field::make( 'text', 'crb_sid', 'Twilio SID' )
+				->help_text( 'e.g. ACccc6cd908be393ee0b02c3855bcde65e' )
+				->set_width( 50 ),
+
+				Field::make( 'text', 'crb_token', 'Twilio Token' )
+				->help_text( 'e.g. a13ab322b56ae3307ae94aff69653fc4' )
+				->set_width( 50 ),
+
 				Field::make( 'text', 'crb_webhook', 'Twilio WebHook' )
 				->help_text( 'e.g. https://hooks.twilio.com/services/xxxxxx' ),
 			)
