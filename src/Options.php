@@ -23,6 +23,34 @@ class Options {
 	private $plugin;
 
 	/**
+	 * Sender Name
+	 *
+	 * @var string
+	 */
+	private $sender;
+
+	/**
+	 * Frequency
+	 *
+	 * @var string
+	 */
+	private $username;
+
+	/**
+	 * Message
+	 *
+	 * @var string
+	 */
+	private $message;
+
+	/**
+	 * Twilio WebHook
+	 *
+	 * @var string
+	 */
+	private $webhook;
+
+	/**
 	 * Instantiate class
 	 *
 	 * @param Plugin $plugin Plugin Instance.
