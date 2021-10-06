@@ -77,7 +77,7 @@ class Plugin {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'WooCommerce Pending Order Reminder Bot', 'wporb' );
+		return __( 'Woo Pending Order Reminder', 'wporb' );
 	}
 
 	/**
@@ -95,6 +95,6 @@ class Plugin {
 	 * @return string
 	 */
 	public function get_description() {
-		return __( 'Send SMS messages to buyers notifying them of abandoned cart orders.', 'wporb' );
+		return __( 'Send SMS reminders to buyers notifying them of abandoned cart orders. Start by signing up for a Twilio account on Twilio.com. To configure your WooCommerce Pending Order Reminder Bot, you will need to obtain your Account SID, Token and Phone numbers and then enter them here. Save changes and you are ready to go!', 'wporb' );
 	}
 }
