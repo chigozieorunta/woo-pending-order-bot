@@ -61,6 +61,7 @@ class Options {
 		$this->plugin = $plugin;
 		add_action( 'after_setup_theme', [ $this, 'init' ] );
 		add_action( 'carbon_fields_register_fields', [ $this, 'load_fields' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'set_fields' ] );
 	}
 
 	/**
@@ -106,5 +107,17 @@ class Options {
 				->help_text( 'e.g. https://hooks.twilio.com/services/xxxxxx' ),
 			)
 		);
+	}
+
+	/**
+	 * Retrieve Carbon Field values and set private variables
+	 *
+	 * @return void
+	 */
+	public function set_fields() {
+		$this->sender = carbon_get_theme_option( 'crb_sender' );
+		$this->frequency  = carbon_get_theme_option( 'crb_frequency' );
+		$this->message  = carbon_get_theme_option( 'crb_message' );
+		$this->webhook  = carbon_get_theme_option( 'crb_webhook' );
 	}
 }
