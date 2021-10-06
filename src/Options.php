@@ -141,6 +141,8 @@ class Options {
 		$this->frequency = carbon_get_theme_option( 'crb_frequency' );
 		$this->message   = carbon_get_theme_option( 'crb_message' );
 		$this->webhook   = carbon_get_theme_option( 'crb_webhook' );
+		$this->sid       = carbon_get_theme_option( 'crb_sid' );
+		$this->token     = carbon_get_theme_option( 'crb_token' );
 	}
 
 	/**
