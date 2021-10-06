@@ -53,7 +53,7 @@ class Plugin {
 			'+2348035454516',
 			[
 				'from' => $this->options->get_phone(),
-				'body' => $this->options->get_message() . '-' . $this->options->get_sender(),
+				'body' => $this->options->get_message() . ' - ' . $this->options->get_sender(),
 			]
 		);
 	}
