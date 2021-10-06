@@ -16,11 +16,20 @@ use Carbon_Fields\Field;
 class Options {
 
 	/**
+	 * Plugin instance
+	 *
+	 * @var object
+	 */
+	private $plugin;
+
+	/**
 	 * Instantiate class
+	 *
+	 * @param Plugin $plugin Plugin Instance.
 	 *
 	 * @return void
 	 */
-	public function __construct() {
-		// ..
+	public function __construct( Plugin $plugin ) {
+		$this->plugin = $plugin;
 	}
 }
