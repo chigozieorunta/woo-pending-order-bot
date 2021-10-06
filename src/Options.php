@@ -115,10 +115,10 @@ class Options {
 	 * @return void
 	 */
 	public function set_fields() {
-		$this->sender = carbon_get_theme_option( 'crb_sender' );
-		$this->frequency  = carbon_get_theme_option( 'crb_frequency' );
-		$this->message  = carbon_get_theme_option( 'crb_message' );
-		$this->webhook  = carbon_get_theme_option( 'crb_webhook' );
+		$this->sender    = carbon_get_theme_option( 'crb_sender' );
+		$this->frequency = carbon_get_theme_option( 'crb_frequency' );
+		$this->message   = carbon_get_theme_option( 'crb_message' );
+		$this->webhook   = carbon_get_theme_option( 'crb_webhook' );
 	}
 
 	/**
