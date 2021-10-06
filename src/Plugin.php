@@ -49,4 +49,13 @@ class Plugin {
 	public function get_title() {
 		return __( 'WooCommerce Pending Order Reminder Bot', 'wporb' );
 	}
+
+	/**
+	 * Get Plugin Author
+	 *
+	 * @return string
+	 */
+	public function get_author() {
+		return __( 'Chigozie Orunta', 'slack-bot' );
+	}
 }
