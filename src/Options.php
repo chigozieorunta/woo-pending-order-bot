@@ -120,4 +120,13 @@ class Options {
 		$this->message  = carbon_get_theme_option( 'crb_message' );
 		$this->webhook  = carbon_get_theme_option( 'crb_webhook' );
 	}
+
+	/**
+	 * Return sender
+	 *
+	 * @return string
+	 */
+	public function get_sender() {
+		return $this->sender;
+	}
 }
