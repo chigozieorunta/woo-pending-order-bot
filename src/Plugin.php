@@ -41,6 +41,9 @@ class Plugin {
 	/**
 	 * Reminder method
 	 *
+	 * @param int    $post_id Post ID.
+	 * @param object $post Post.
+	 *
 	 * @return void
 	 */
 	public function send_reminders( $post_id, $post ) {
@@ -50,7 +53,7 @@ class Plugin {
 			'+2348035454516',
 			[
 				'from' => $this->options->get_phone(),
-				'body' => $this->options->get_message(),
+				'body' => $this->options->get_message() . '-' . $this->options->get_sender(),
 			]
 		);
 	}
