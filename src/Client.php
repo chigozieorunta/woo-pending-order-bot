@@ -15,7 +15,7 @@ interface Client {
 	/**
 	 * Send method
 	 *
-	 * @param string $from Twilio Registered Number.
+	 * @param string $from Registered Number.
 	 * @param string $to Recipient Number.
 	 * @param string $message Body of message.
 	 *
