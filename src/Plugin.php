@@ -36,18 +36,15 @@ class Plugin {
 	}
 
 	public function send_reminders() {
-		$sid     = 'ACde97f550d2e42218521cd8aa35df3639';
-		$token   = '922a50033e993d0f1dd504a0fadca5fd';
-		$client  = new Twilio\Rest\Client( $sid, $token );
+		$client  = new Twilio\Rest\Client( $this->options->get_sid(), $this->options->get_token() );
+
 		$message = $client->messages->create(
   			'2348035454516',
 			[
 				'from' => $this->options->get_sender(),
-				'body' => $this->options->get_message()
+				'body' => $this->options->get_message(),
 			]
 		);
-	}
-);
 	}
 
 	/**
