@@ -52,6 +52,8 @@ class Options {
 	public function load_fields() {
 		Container::make( 'theme_options', $this->plugin->get_title() )
 
-		->set_page_file( 'wporb' );
+		->set_page_file( 'wporb' )
+
+		->set_icon( 'dashicons-cart' );
 	}
 }
