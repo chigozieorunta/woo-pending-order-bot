@@ -43,6 +43,12 @@ class Twilio implements Client {
 	 * @return object
 	 */
 	public function send( $from, $to, $message ) {
-		return $this->client->messages->create( $to, [ 'from' => $from, 'body' => $message ] );
+		return $this->client->messages->create(
+			$to,
+			[
+				'from' => $from,
+				'body' => $message,
+			]
+		);
 	}
 }
