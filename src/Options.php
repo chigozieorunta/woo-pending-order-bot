@@ -63,6 +63,10 @@ class Options {
 
 				Field::make( 'html', 'crb_desc' )
 				->set_html( $this->plugin->get_description() ),
+
+				Field::make( 'text', 'crb_sender', 'Sender Name' )
+				->help_text( 'e.g. John Doe' )
+				->set_width( 50 ),
 			)
 		);
 	}
