@@ -58,6 +58,13 @@ class Options {
 	private $token;
 
 	/**
+	 * Twilio Phone
+	 *
+	 * @var string
+	 */
+	private $phone;
+
+	/**
 	 * Instantiate class
 	 *
 	 * @param Plugin $plugin Plugin Instance.
@@ -108,13 +115,14 @@ class Options {
 				->help_text( 'e.g. 1' )
 				->set_width( 50 ),
 
+				Field::make( 'text', 'crb_phone', 'Twilio Phone Number' )
+				->help_text( 'e.g. +13021545862' ),
+
 				Field::make( 'text', 'crb_sid', 'Twilio SID' )
-				->help_text( 'e.g. ACccc6cd908be393ee0b02c3855bcde65e' )
-				->set_width( 50 ),
+				->help_text( 'e.g. ACccc6cd908be393ee0b02c3855bcde65e' ),
 
 				Field::make( 'text', 'crb_token', 'Twilio Token' )
-				->help_text( 'e.g. a13ab322b56ae3307ae94aff69653fc4' )
-				->set_width( 50 ),
+				->help_text( 'e.g. a13ab322b56ae3307ae94aff69653fc4' ),
 
 				Field::make( 'textarea', 'crb_message', 'SMS Message (Reminder)' ),
 			)
@@ -132,6 +140,7 @@ class Options {
 		$this->message   = carbon_get_theme_option( 'crb_message' );
 		$this->sid       = carbon_get_theme_option( 'crb_sid' );
 		$this->token     = carbon_get_theme_option( 'crb_token' );
+		$this->phone     = carbon_get_theme_option( 'crb_phone' );
 	}
 
 	/**
