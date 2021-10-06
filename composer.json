@@ -8,7 +8,8 @@
   "require": {
     "php": ">=7.2",
     "composer/installers": "^1.7",
-    "htmlburger/carbon-fields": "^3.3"
+    "htmlburger/carbon-fields": "^3.3",
+    "twilio/sdk": "^6.28"
   },
   "autoload": {
     "psr-4": {
