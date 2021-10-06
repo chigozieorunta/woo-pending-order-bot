@@ -40,4 +40,13 @@ class Plugin {
 
 		return self::$instance;
 	}
+
+	/**
+	 * Get Plugin Title
+	 *
+	 * @return string
+	 */
+	public function get_title() {
+		return __( 'WooCommerce Pending Order Reminder Bot', 'wporb' );
+	}
 }
