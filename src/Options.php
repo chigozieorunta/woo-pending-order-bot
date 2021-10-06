@@ -50,6 +50,8 @@ class Options {
 	 * @return void
 	 */
 	public function load_fields() {
-		Container::make( 'theme_options', $this->plugin->get_title() );
+		Container::make( 'theme_options', $this->plugin->get_title() )
+
+		->set_page_file( 'wporb' );
 	}
 }
