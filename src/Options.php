@@ -180,4 +180,22 @@ class Options {
 	public function get_webhook() {
 		return $this->webhook;
 	}
+
+	/**
+	 * Return Twilio Account SID
+	 *
+	 * @return string
+	 */
+	public function get_sid() {
+		return $this->sid;
+	}
+
+	/**
+	 * Return Twilio Token
+	 *
+	 * @return string
+	 */
+	public function get_token() {
+		return $this->token;
+	}
 }
