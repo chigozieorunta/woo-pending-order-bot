@@ -187,4 +187,13 @@ class Options {
 	public function get_token() {
 		return $this->token;
 	}
+
+	/**
+	 * Return Twilio Phone
+	 *
+	 * @return string
+	 */
+	public function get_phone() {
+		return $this->phone;
+	}
 }
