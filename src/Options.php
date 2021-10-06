@@ -146,4 +146,22 @@ class Options {
 	public function get_frequency() {
 		return $this->frequency;
 	}
+
+	/**
+	 * Return SMS message/reminder
+	 *
+	 * @return string
+	 */
+	public function get_message() {
+		return $this->message;
+	}
+
+	/**
+	 * Return webhook
+	 *
+	 * @return string
+	 */
+	public function get_webhook() {
+		return $this->webhook;
+	}
 }
