@@ -129,4 +129,13 @@ class Options {
 	public function get_sender() {
 		return $this->sender;
 	}
+
+	/**
+	 * Return frequency
+	 *
+	 * @return string
+	 */
+	public function get_frequency() {
+		return $this->frequency;
+	}
 }
