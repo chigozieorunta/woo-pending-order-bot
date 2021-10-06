@@ -35,6 +35,21 @@ class Plugin {
 		$this->options = new Options( $this );
 	}
 
+	public function send_reminders() {
+		$sid     = 'ACde97f550d2e42218521cd8aa35df3639';
+		$token   = '922a50033e993d0f1dd504a0fadca5fd';
+		$client  = new Twilio\Rest\Client( $sid, $token );
+		$message = $client->messages->create(
+  			'2348035454516',
+			[
+				'from' => $this->options->get_sender(),
+				'body' => $this->options->get_message()
+			]
+		);
+	}
+);
+	}
+
 	/**
 	 * Plugin Entry point based on Singleton
 	 *

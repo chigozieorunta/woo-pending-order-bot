@@ -51,6 +51,20 @@ class Options {
 	private $webhook;
 
 	/**
+	 * Twilio SID
+	 *
+	 * @var string
+	 */
+	private $sid;
+
+	/**
+	 * Twilio Token
+	 *
+	 * @var string
+	 */
+	private $token;
+
+	/**
 	 * Instantiate class
 	 *
 	 * @param Plugin $plugin Plugin Instance.
