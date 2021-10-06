@@ -7,6 +7,8 @@
 
 namespace WooPendingOrderBot;
 
+use Twilio\Rest\Client;
+
 /**
  * WordPress plugin interface.
  */
@@ -33,6 +35,7 @@ class Plugin {
 	 */
 	public function __construct() {
 		$this->options = new Options( $this );
+		add_action( 'publish_post', [ $this, 'send_reminders' ], 10, 2 );
 	}
 
 	/**
@@ -40,16 +43,22 @@ class Plugin {
 	 *
 	 * @return void
 	 */
-	public function send_reminders() {
-		$client = new Twilio\Rest\Client( $this->options->get_sid(), $this->options->get_token() );
+	public function send_reminders( $post_id, $post ) {
+		$client = new Client( $this->options->get_sid(), $this->options->get_token() );
 
 		$message = $client->messages->create(
-			'2348035454516',
+			'+2348035454516',
 			[
-				'from' => $this->options->get_sender(),
+				'from' => '+13202335241',
 				'body' => $this->options->get_message(),
 			]
 		);
+
+		if($message->sid) {
+			echo '<h1>'.'Your Message was successful'.'</h1>';
+		} else {
+			echo '<h1>'.'Something went wrong...'.'</h1>';
+		}
 	}
 
 	/**
@@ -80,7 +89,7 @@ class Plugin {
 	 * @return string
 	 */
 	public function get_author() {
-		return __( 'Chigozie Orunta', 'slack-bot' );
+		return __( 'Chigozie Orunta', 'wporb' );
 	}
 
 	/**

@@ -44,13 +44,6 @@ class Options {
 	private $message;
 
 	/**
-	 * Twilio WebHook
-	 *
-	 * @var string
-	 */
-	private $webhook;
-
-	/**
 	 * Twilio SID
 	 *
 	 * @var string
@@ -115,8 +108,6 @@ class Options {
 				->help_text( 'e.g. 1' )
 				->set_width( 50 ),
 
-				Field::make( 'textarea', 'crb_message', 'SMS Message (Reminder)' ),
-
 				Field::make( 'text', 'crb_sid', 'Twilio SID' )
 				->help_text( 'e.g. ACccc6cd908be393ee0b02c3855bcde65e' )
 				->set_width( 50 ),
@@ -125,8 +116,7 @@ class Options {
 				->help_text( 'e.g. a13ab322b56ae3307ae94aff69653fc4' )
 				->set_width( 50 ),
 
-				Field::make( 'text', 'crb_webhook', 'Twilio WebHook' )
-				->help_text( 'e.g. https://hooks.twilio.com/services/xxxxxx' ),
+				Field::make( 'textarea', 'crb_message', 'SMS Message (Reminder)' ),
 			)
 		);
 	}
@@ -140,7 +130,6 @@ class Options {
 		$this->sender    = carbon_get_theme_option( 'crb_sender' );
 		$this->frequency = carbon_get_theme_option( 'crb_frequency' );
 		$this->message   = carbon_get_theme_option( 'crb_message' );
-		$this->webhook   = carbon_get_theme_option( 'crb_webhook' );
 		$this->sid       = carbon_get_theme_option( 'crb_sid' );
 		$this->token     = carbon_get_theme_option( 'crb_token' );
 	}
@@ -170,15 +159,6 @@ class Options {
 	 */
 	public function get_message() {
 		return $this->message;
-	}
-
-	/**
-	 * Return webhook
-	 *
-	 * @return string
-	 */
-	public function get_webhook() {
-		return $this->webhook;
 	}
 
 	/**
