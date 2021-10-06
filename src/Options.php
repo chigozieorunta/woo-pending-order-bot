@@ -54,6 +54,16 @@ class Options {
 
 		->set_page_file( 'wporb' )
 
-		->set_icon( 'dashicons-cart' );
+		->set_icon( 'dashicons-cart' )
+
+		->add_fields(
+			array(
+				Field::make( 'html', 'crb_title' )
+				->set_html( '<strong>' . __( 'Description', 'wporb' ) . '</strong>' ),
+
+				Field::make( 'html', 'crb_desc' )
+				->set_html( $this->plugin->get_description() ),
+			)
+		);
 	}
 }
