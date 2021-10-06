@@ -72,6 +72,8 @@ class Options {
 				->help_text( 'e.g. 1' )
 				->set_width( 50 ),
 
+				Field::make( 'textarea', 'crb_reminder', 'SMS Message (Reminder)' ),
+
 				Field::make( 'text', 'crb_twilio_webhook', 'Twilio WebHook' )
 				->help_text( 'e.g. https://hooks.twilio.com/services/xxxxxx' ),
 			)
