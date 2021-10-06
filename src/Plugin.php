@@ -58,4 +58,13 @@ class Plugin {
 	public function get_author() {
 		return __( 'Chigozie Orunta', 'slack-bot' );
 	}
+
+	/**
+	 * Get Plugin Description
+	 *
+	 * @return string
+	 */
+	public function get_description() {
+		return __( 'Send SMS messages to buyers notifying them of abandoned cart orders.', 'wporb' );
+	}
 }
