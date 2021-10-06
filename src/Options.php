@@ -71,6 +71,9 @@ class Options {
 				Field::make( 'text', 'crb_frequency', 'SMS Frequency (per day)' )
 				->help_text( 'e.g. 1' )
 				->set_width( 50 ),
+
+				Field::make( 'text', 'crb_twilio_webhook', 'Twilio WebHook' )
+				->help_text( 'e.g. https://hooks.twilio.com/services/xxxxxx' ),
 			)
 		);
 	}
