@@ -67,6 +67,10 @@ class Options {
 				Field::make( 'text', 'crb_sender', 'Sender Name' )
 				->help_text( 'e.g. John Doe' )
 				->set_width( 50 ),
+
+				Field::make( 'text', 'crb_frequency', 'SMS Frequency (per day)' )
+				->help_text( 'e.g. 1' )
+				->set_width( 50 ),
 			)
 		);
 	}
