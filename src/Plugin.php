@@ -49,16 +49,10 @@ class Plugin {
 		$message = $client->messages->create(
 			'+2348035454516',
 			[
-				'from' => '+13202335241',
+				'from' => $this->options->get_phone(),
 				'body' => $this->options->get_message(),
 			]
 		);
-
-		if($message->sid) {
-			echo '<h1>'.'Your Message was successful'.'</h1>';
-		} else {
-			echo '<h1>'.'Something went wrong...'.'</h1>';
-		}
 	}
 
 	/**
