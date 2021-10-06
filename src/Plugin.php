@@ -20,12 +20,19 @@ class Plugin {
 	private static $instance;
 
 	/**
+	 * Private instance of options class
+	 *
+	 * @var object
+	 */
+	private $options;
+
+	/**
 	 * Setup the plugin.
 	 *
 	 * @return void
 	 */
 	public function __construct() {
-		// ..
+		$this->options = new Options( $this );
 	}
 
 	/**
