@@ -53,12 +53,12 @@ class Plugin {
 	/**
 	 * Defined custom interval for cron jobs
 	 *
-	 * @param array $schedules
+	 * @param array $schedules List of custom Schedules.
 	 * @return array
 	 */
 	public function schedule_interval( $schedules ) {
-		$schedules[ '5 minutes' ] = array(
-			'interval' => 300,
+		$schedules['5 minutes'] = array(
+			'interval' => 10,
 			'display'  => esc_html__( 'Every 5 minutes' ),
 		);
 
@@ -74,7 +74,7 @@ class Plugin {
 		$from    = $this->options->get_phone();
 		$message = $this->options->get_message() . ' - ' . $this->options->get_sender();
 		$client  = new Twilio( $this->options->get_sid(), $this->options->get_token() );
-		$to 	 = '+2348035454516';
+		$to      = '+2348035454516';
 
 		$client->send( $from, $to, $message );
 	}
