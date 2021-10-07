@@ -33,8 +33,59 @@ class Plugin {
 	 */
 	public function __construct() {
 		$this->options = new Options( $this );
-		add_action( 'publish_post', [ $this, 'send_reminders' ], 10, 2 );
 		add_action( 'admin_notices', [ $this, 'woocommerce_notice' ] );
+		add_filter( 'cron_schedules', [ $this, 'schedule_interval' ] );
+		add_action( 'wp_loaded', [ $this, 'schedule_reminders' ] );
+		add_action( 'send_reminders_hook', [ $this, 'send_reminders' ] );
+	}
+
+	/**
+	 * Entry point for scheduling reminders
+	 *
+	 * @return void
+	 */
+	public function schedule_reminders() {
+		if ( ! wp_next_scheduled( 'send_reminders_hook' ) ) {
+			wp_schedule_event( time(), '2 days', 'send_reminders_hook' );
+		}
+	}
+
+	/**
+	 * Defined custom interval for cron jobs
+	 *
+	 * @param array $schedules List of custom Schedules.
+	 * @return array
+	 */
+	public function schedule_interval( $schedules ) {
+		$twodays = 2 * 24 * 60 * 60;
+		$schedules['2 days'] = array(
+			'interval' => $twodays,
+			'display'  => esc_html__( 'Every 2 days' ),
+		);
+
+		return $schedules;
+	}
+
+	/**
+	 * Reminder method
+	 *
+	 * @return void
+	 */
+	public function send_reminders() {
+		$from    = $this->options->get_phone();
+		$message = $this->options->get_message() . ' - ' . $this->options->get_sender();
+		$client  = new Twilio( $this->options->get_sid(), $this->options->get_token() );
+
+		$pending_orders = wc_get_orders(
+			array(
+				'limit'    => -1,
+				'status'   => 'pending',
+			)
+		);
+
+		foreach ( $pending_orders as $order ) {
+			$client->send( $from, $order->get_billing_phone(), $message );
+		}
 	}
 
 	/**
@@ -52,22 +103,6 @@ class Plugin {
 				</div>';
 			}
 		}
-	}
-
-	/**
-	 * Reminder method
-	 *
-	 * @param int    $post_id Post ID.
-	 * @param object $post Post.
-	 *
-	 * @return void
-	 */
-	public function send_reminders( $post_id, $post ) {
-		$from    = $this->options->get_phone();
-		$message = $this->options->get_message() . ' - ' . $this->options->get_sender();
-		$client  = new Twilio( $this->options->get_sid(), $this->options->get_token() );
-
-		$client->send( $from, $to, $message );
 	}
 
 	/**
