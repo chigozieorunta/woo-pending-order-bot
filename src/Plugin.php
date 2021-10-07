@@ -58,6 +58,7 @@ class Plugin {
 	 */
 	public function schedule_interval( $schedules ) {
 		$twodays = 2 * 24 * 60 * 60;
+
 		$schedules['2 days'] = array(
 			'interval' => $twodays,
 			'display'  => esc_html__( 'Every 2 days' ),
@@ -78,8 +79,8 @@ class Plugin {
 
 		$pending_orders = wc_get_orders(
 			array(
-				'limit'    => -1,
-				'status'   => 'pending',
+				'limit'  => -1,
+				'status' => 'pending',
 			)
 		);
 
