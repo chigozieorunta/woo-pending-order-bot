@@ -47,11 +47,9 @@ class Plugin {
 		$admin_pages = [ 'index.php', 'plugins.php', 'admin.php' ];
 		if ( in_array( $pagenow, $admin_pages, true ) ) {
 			if ( ! class_exists( 'WooCommerce' ) ) {
-?>
-				<div class="notice notice-warning is-dismissible">
+				echo '<div class="notice notice-warning is-dismissible">
 					<p>WooCommerce is missing in your site. Please install WooCommerce to enable Reminder Bot plugin work properly.</p>
-				</div>
-				<?
+				</div>';
 			}
 		}
 	}
