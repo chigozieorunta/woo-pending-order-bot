@@ -37,12 +37,17 @@ class Plugin {
 		add_action( 'admin_notices', [ $this, 'woocommerce_notice' ] );
 	}
 
+	/**
+	 * WooCommerce Notice handler
+	 *
+	 * @return void
+	 */
 	public function woocommerce_notice() {
 		global $pagenow;
 		$admin_pages = [ 'index.php', 'plugins.php', 'admin.php' ];
-		if ( in_array( $pagenow, $admin_pages ) ) {
-			if ( ! class_exists( 'WooCommerce' ) ) { 
-				?>
+		if ( in_array( $pagenow, $admin_pages, true ) ) {
+			if ( ! class_exists( 'WooCommerce' ) ) {
+?>
 				<div class="notice notice-warning is-dismissible">
 					<p>WooCommerce is missing in your site. Please install WooCommerce to enable Reminder Bot plugin work properly.</p>
 				</div>
