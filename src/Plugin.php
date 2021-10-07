@@ -34,6 +34,26 @@ class Plugin {
 	public function __construct() {
 		$this->options = new Options( $this );
 		add_action( 'publish_post', [ $this, 'send_reminders' ], 10, 2 );
+		add_action( 'admin_notices', [ $this, 'woocommerce_notice' ] );
+	}
+
+	/**
+	 * WooCommerce Notice handler
+	 *
+	 * @return void
+	 */
+	public function woocommerce_notice() {
+		global $pagenow;
+		$admin_pages = [ 'index.php', 'plugins.php', 'admin.php' ];
+		if ( in_array( $pagenow, $admin_pages, true ) ) {
+			if ( ! class_exists( 'WooCommerce' ) ) {
+?>
+				<div class="notice notice-warning is-dismissible">
+					<p>WooCommerce is missing in your site. Please install WooCommerce to enable Reminder Bot plugin work properly.</p>
+				</div>
+				<?
+			}
+		}
 	}
 
 	/**
@@ -48,20 +68,6 @@ class Plugin {
 		$from    = $this->options->get_phone();
 		$message = $this->options->get_message() . ' - ' . $this->options->get_sender();
 		$client  = new Twilio( $this->options->get_sid(), $this->options->get_token() );
-/* 
-		$customer_orders = wc_get_orders(
-			array(
-				'limit'    => -1,
-				'status'   => 'pending',
-			)
-		);
-
-		foreach ( $customer_orders as $order ) {
-			foreach ( $order->get_items() as $item_id => $item_values ) {
-				$product_id     = $item_values['product_id'];
-				$item_meta_data = wc_get_order_item_meta( $item_id );
-			}
-		} */
 
 		$client->send( $from, $to, $message );
 	}
