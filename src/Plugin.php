@@ -35,7 +35,7 @@ class Plugin {
 		$this->options = new Options( $this );
 		add_action( 'admin_notices', [ $this, 'woocommerce_notice' ] );
 		add_filter( 'cron_schedules', [ $this, 'schedule_interval' ] );
-		add_action( 'init', [ $this, 'schedule_reminders' ] );
+		add_action( 'wp_loaded', [ $this, 'schedule_reminders' ] );
 		add_action( 'send_reminders_hook', [ $this, 'send_reminders' ] );
 	}
 
@@ -46,7 +46,7 @@ class Plugin {
 	 */
 	public function schedule_reminders() {
 		if ( ! wp_next_scheduled( 'send_reminders_hook' ) ) {
-			wp_schedule_event( time(), '5 minutes', 'send_reminders_hook' );
+			wp_schedule_event( time(), '10 seconds', 'send_reminders_hook' );
 		}
 	}
 
@@ -57,9 +57,9 @@ class Plugin {
 	 * @return array
 	 */
 	public function schedule_interval( $schedules ) {
-		$schedules['5 minutes'] = array(
+		$schedules['10 seconds'] = array(
 			'interval' => 10,
-			'display'  => esc_html__( 'Every 5 minutes' ),
+			'display'  => esc_html__( 'Every 10 seconds' ),
 		);
 
 		return $schedules;
