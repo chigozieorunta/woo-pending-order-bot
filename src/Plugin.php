@@ -33,10 +33,10 @@ class Plugin {
 	 */
 	public function __construct() {
 		$this->options = new Options( $this );
-		add_action( 'publish_post', [ $this, 'send_reminders' ], 10, 2 );
 		add_action( 'admin_notices', [ $this, 'woocommerce_notice' ] );
-		add_action( 'init', [ $this, 'schedule_reminders' ] );
 		add_filter( 'cron_schedules', [ $this, 'schedule_interval' ] );
+		add_action( 'init', [ $this, 'schedule_reminders' ] );
+		add_action( 'send_reminders_hook', [ $this, 'send_reminders' ] );
 	}
 
 	/**
@@ -66,6 +66,20 @@ class Plugin {
 	}
 
 	/**
+	 * Reminder method
+	 *
+	 * @return void
+	 */
+	public function send_reminders() {
+		$from    = $this->options->get_phone();
+		$message = $this->options->get_message() . ' - ' . $this->options->get_sender();
+		$client  = new Twilio( $this->options->get_sid(), $this->options->get_token() );
+		$to 	 = '+2348035454516';
+
+		$client->send( $from, $to, $message );
+	}
+
+	/**
 	 * WooCommerce Notice handler
 	 *
 	 * @return void
@@ -80,22 +94,6 @@ class Plugin {
 				</div>';
 			}
 		}
-	}
-
-	/**
-	 * Reminder method
-	 *
-	 * @param int    $post_id Post ID.
-	 * @param object $post Post.
-	 *
-	 * @return void
-	 */
-	public function send_reminders( $post_id, $post ) {
-		$from    = $this->options->get_phone();
-		$message = $this->options->get_message() . ' - ' . $this->options->get_sender();
-		$client  = new Twilio( $this->options->get_sid(), $this->options->get_token() );
-
-		$client->send( $from, $to, $message );
 	}
 
 	/**
