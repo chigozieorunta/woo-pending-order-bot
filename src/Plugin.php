@@ -36,6 +36,7 @@ class Plugin {
 		add_action( 'publish_post', [ $this, 'send_reminders' ], 10, 2 );
 		add_action( 'admin_notices', [ $this, 'woocommerce_notice' ] );
 		add_action( 'init', [ $this, 'schedule_reminders' ] );
+		add_filter( 'cron_schedules', [ $this, 'schedule_interval' ] );
 	}
 
 	/**
@@ -47,6 +48,21 @@ class Plugin {
 		if ( ! wp_next_scheduled( 'send_reminders_hook' ) ) {
 			wp_schedule_event( time(), '5 minutes', 'send_reminders_hook' );
 		}
+	}
+
+	/**
+	 * Defined custom interval for cron jobs
+	 *
+	 * @param array $schedules
+	 * @return array
+	 */
+	public function schedule_interval( $schedules ) {
+		$schedules[ '5 minutes' ] = array(
+			'interval' => 300,
+			'display'  => esc_html__( 'Every 5 minutes' ),
+		);
+
+		return $schedules;
 	}
 
 	/**
