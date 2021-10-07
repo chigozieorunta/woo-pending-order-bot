@@ -89,7 +89,7 @@ class Plugin {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Woo Pending Order Reminder', 'wporb' );
+		return __( 'Woo Pending Order Reminder Bot', 'wporb' );
 	}
 
 	/**
