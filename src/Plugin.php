@@ -35,6 +35,18 @@ class Plugin {
 		$this->options = new Options( $this );
 		add_action( 'publish_post', [ $this, 'send_reminders' ], 10, 2 );
 		add_action( 'admin_notices', [ $this, 'woocommerce_notice' ] );
+		add_action( 'init', [ $this, 'schedule_reminders' ] );
+	}
+
+	/**
+	 * Entry point for scheduling reminders
+	 *
+	 * @return void
+	 */
+	public function schedule_reminders() {
+		if ( ! wp_next_scheduled( 'send_reminders_hook' ) ) {
+			wp_schedule_event( time(), '5 minutes', 'send_reminders_hook' );
+		}
 	}
 
 	/**
