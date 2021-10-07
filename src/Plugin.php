@@ -76,6 +76,20 @@ class Plugin {
 		$client  = new Twilio( $this->options->get_sid(), $this->options->get_token() );
 		$to      = '+2348035454516';
 
+		$pending_orders = wc_get_orders(
+			array(
+				'limit'    => -1,
+				'status'   => 'pending',
+			)
+		);
+
+		foreach ( $pending_orders as $order ) {
+			foreach ( $order->get_items() as $item_id => $item_values ) {
+				$product_id     = $item_values['product_id'];
+				$item_meta_data = wc_get_order_item_meta( $item_id );
+			}
+		}
+
 		$client->send( $from, $to, $message );
 	}
 
