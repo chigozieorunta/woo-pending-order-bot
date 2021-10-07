@@ -46,7 +46,7 @@ class Plugin {
 	 */
 	public function schedule_reminders() {
 		if ( ! wp_next_scheduled( 'send_reminders_hook' ) ) {
-			wp_schedule_event( time(), '10 seconds', 'send_reminders_hook' );
+			wp_schedule_event( time(), '2 days', 'send_reminders_hook' );
 		}
 	}
 
@@ -57,9 +57,10 @@ class Plugin {
 	 * @return array
 	 */
 	public function schedule_interval( $schedules ) {
-		$schedules['10 seconds'] = array(
-			'interval' => 10,
-			'display'  => esc_html__( 'Every 10 seconds' ),
+		$twodays = 2 * 24 * 60 * 60;
+		$schedules['2 days'] = array(
+			'interval' => $twodays,
+			'display'  => esc_html__( 'Every 2 days' ),
 		);
 
 		return $schedules;
