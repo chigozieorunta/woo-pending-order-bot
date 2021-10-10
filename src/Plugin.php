@@ -27,85 +27,22 @@ class Plugin {
 	private $options;
 
 	/**
+	 * Private instance of scheduler class
+	 *
+	 * @var object
+	 */
+	private $scheduler;
+
+	/**
 	 * Setup the plugin.
 	 *
 	 * @return void
 	 */
 	public function __construct() {
 		$this->options = new Options( $this );
-		add_action( 'admin_notices', [ $this, 'woocommerce_notice' ] );
-		add_filter( 'cron_schedules', [ $this, 'schedule_interval' ] );
-		add_action( 'wp_loaded', [ $this, 'schedule_reminders' ] );
-		add_action( 'send_reminders_hook', [ $this, 'send_reminders' ] );
-	}
-
-	/**
-	 * Entry point for scheduling reminders
-	 *
-	 * @return void
-	 */
-	public function schedule_reminders() {
-		if ( ! wp_next_scheduled( 'send_reminders_hook' ) ) {
-			wp_schedule_event( time(), '2 days', 'send_reminders_hook' );
-		}
-	}
-
-	/**
-	 * Defined custom interval for cron jobs
-	 *
-	 * @param array $schedules List of custom Schedules.
-	 * @return array
-	 */
-	public function schedule_interval( $schedules ) {
-		$twodays = 2 * 24 * 60 * 60;
-
-		$schedules['2 days'] = array(
-			'interval' => $twodays,
-			'display'  => esc_html__( 'Every 2 days' ),
-		);
-
-		return $schedules;
-	}
-
-	/**
-	 * Reminder method
-	 *
-	 * @return void
-	 */
-	public function send_reminders() {
-		$from    = $this->options->get_phone();
-		$message = $this->options->get_message() . ' - ' . $this->options->get_sender();
-		$client  = new Twilio( $this->options->get_sid(), $this->options->get_token() );
-
-		$pending_orders = wc_get_orders(
-			array(
-				'limit'  => -1,
-				'status' => 'pending',
-			)
-		);
-
-		foreach ( $pending_orders as $order ) {
-			$client->send( $from, $order->get_billing_phone(), $message );
-		}
-	}
-
-	/**
-	 * WooCommerce Notice handler
-	 *
-	 * @return void
-	 */
-	public function woocommerce_notice() {
-		global $pagenow;
-		$admin_pages = [ 'index.php', 'plugins.php', 'admin.php' ];
-		if ( in_array( $pagenow, $admin_pages, true ) ) {
-			if ( ! class_exists( 'WooCommerce' ) ) {
-				echo '<div class="notice notice-warning is-dismissible">
-					<p>WooCommerce is missing in your site. Please install WooCommerce to enable Reminder Bot plugin work properly.</p>
-				</div>';
-			}
-		}
-	}
-
+		$this->scheduler = new Scheduler ( $this->options );
+	}	
+	
 	/**
 	 * Plugin Entry point based on Singleton
 	 *
