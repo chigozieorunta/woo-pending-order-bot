@@ -15,6 +15,8 @@ class Scheduler {
 	/**
 	 * Setup Scheduler
 	 *
+	 * @param Options $option Options instance.
+	 *
 	 * @return void
 	 */
 	public function __construct( Options $option ) {

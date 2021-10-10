@@ -39,10 +39,10 @@ class Plugin {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->options = new Options( $this );
-		$this->scheduler = new Scheduler ( $this->options );
-	}	
-	
+		$this->options   = new Options( $this );
+		$this->scheduler = new Scheduler( $this->options );
+	}
+
 	/**
 	 * Plugin Entry point based on Singleton
 	 *
