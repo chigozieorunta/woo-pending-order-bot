@@ -73,6 +73,7 @@ class Options {
 	 */
 	public function __construct( Plugin $plugin ) {
 		$this->plugin = $plugin;
+		add_action( 'admin_notices', [ $this, 'woocommerce_notice' ] );
 		add_action( 'after_setup_theme', [ $this, 'init' ] );
 		add_action( 'carbon_fields_register_fields', [ $this, 'load_fields' ] );
 		add_action( 'carbon_fields_register_fields', [ $this, 'set_fields' ] );
@@ -195,5 +196,22 @@ class Options {
 	 */
 	public function get_phone() {
 		return $this->phone;
+	}
+
+	/**
+	 * WooCommerce Notice handler
+	 *
+	 * @return void
+	 */
+	public function woocommerce_notice() {
+		global $pagenow;
+		$admin_pages = [ 'index.php', 'plugins.php', 'admin.php' ];
+		if ( in_array( $pagenow, $admin_pages, true ) ) {
+			if ( ! class_exists( 'WooCommerce' ) ) {
+				echo '<div class="notice notice-warning is-dismissible">
+					<p>WooCommerce is missing in your site. Please install WooCommerce to enable Reminder Bot plugin work properly.</p>
+				</div>';
+			}
+		}
 	}
 }
