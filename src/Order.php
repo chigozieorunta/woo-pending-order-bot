@@ -7,6 +7,9 @@
 
 namespace WooPendingOrderBot;
 
+/**
+ * Order Class
+ */
 class Order {
-	
+
 }
