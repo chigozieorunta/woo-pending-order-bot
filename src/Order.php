@@ -26,14 +26,6 @@ class Order {
 	 */
 	public function __construct() {
 		$this->pending_orders = [];
-		if ( ! class_exists( 'WooCommerce' ) ) {
-			$this->pending_orders = wc_get_orders(
-				array(
-					'limit'  => -1,
-					'status' => 'pending',
-				)
-			);
-		}
 	}
 
 	/**
@@ -42,6 +34,15 @@ class Order {
 	 * @return array
 	 */
 	public function get_pending_orders() {
-		return $pending_orders;
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			$this->pending_orders = wc_get_orders(
+				array(
+					'limit'  => -1,
+					'status' => 'pending',
+				)
+			);
+		}
+
+		return $this->pending_orders;
 	}
 }
