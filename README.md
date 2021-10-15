@@ -2,6 +2,8 @@
 
 Send SMS messages to buyers notifying them of abandoned cart orders. It makes use of your Twilio API account to send SMS messages to your customers.
 
+![WooCommerce Pending Order Reminder Bot Screenshot](assets/screenshot.png)
+
 ## Requirements
 
 - WordPress 5.0+
