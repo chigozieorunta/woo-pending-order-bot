@@ -7,6 +7,7 @@
 
 namespace WooPendingOrderBot;
 
+use Mockery;
 use WP_Mock;
 
 /**
