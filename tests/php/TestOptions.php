@@ -15,10 +15,13 @@ use WP_Mock;
  */
 class TestOptions extends TestCase {
 	/**
-	 * Test get_sender.
+	 * Test get_sender to return string.
 	 *
 	 * @covers \WooPendingOrderBot\Options::get_sender()
 	 */
 	public function test_get_sender() {
+		$mock = Mockery::mock( 'WooPendingOrderBot' );
+		$mock->shouldReceive( 'get_sender' )->once()->andReturn( Mockery::type( 'string' ) );
+		$mock->get_sender();
 	}
 }
