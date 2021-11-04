@@ -1,0 +1,52 @@
+{
+  "name": "chigozieorunta/woo-pending-order-bot",
+  "description": "WooCommerce Pending Order Reminder Bot for WordPress.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=7.2",
+    "composer/installers": "^1.7",
+    "htmlburger/carbon-fields": "^3.3",
+    "twilio/sdk": "^6.28"
+  },
+  "autoload": {
+    "psr-4": {
+      "WooPendingOrderBot\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "WooPendingOrderBot\\": "tests/php/"
+    }
+  },
+  "require-dev": {
+    "wpsh/local": "0.2.3",
+    "phpunit/phpunit": "8.5.2",
+    "mockery/mockery": "1.3.1",
+    "10up/wp_mock": "0.4.2",
+    "wp-coding-standards/wpcs": "2.3.0",
+    "phpcompatibility/phpcompatibility-wp": "2.1.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "0.7.1",
+    "php-coveralls/php-coveralls": "2.2.0"
+  },
+  "scripts": {
+    "lint": [
+      "@composer validate --strict",
+      "phpcs ."
+    ],
+    "test": [
+      "phpunit"
+    ],
+    "coverage": [
+      "php-coveralls --verbose"
+    ],
+    "build": [
+      "composer install --no-dev --prefer-dist --optimize-autoloader --no-scripts"
+    ]
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
