@@ -1,5 +1,26 @@
 const fs = require('fs');
-const gulp = require('gulp');
+const { src, dest, watch } = require('gulp');
+
+const minify = require('gulp-clean-css');
+const autoprefixer = require('gulp-autoprefixer');
+const sass = require('gulp-sass')(require('sass'));
+
+const path = {
+	src: {
+		css: './assets/src/css/**/*.scss'
+	},
+	dist: {
+		css: './assets/dist/css'
+	}
+}
+
+const compile = () => {
+	return src(path.src.css)
+		.pipe(sass())
+		.pipe(autoprefixer())
+		.pipe(minify())
+		.pipe(dest(path.src.dist));
+}
 
 gulp.task('build', async function () {
 	gulp.src('src/*.php')
