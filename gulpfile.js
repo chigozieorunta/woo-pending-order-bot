@@ -22,6 +22,8 @@ const compile = () => {
 		.pipe(dest(path.src.dist));
 }
 
+exports.sass = compile;
+
 gulp.task('build', async function () {
 	gulp.src('src/*.php')
 		.pipe(gulp.dest('build/src'));
